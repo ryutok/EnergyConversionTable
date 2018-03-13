@@ -1,2 +1,2 @@
 # Energy Conversion Table
-[LINK](https://ryutok.github.io/EnergyConversionTable/)
+Access [https://ryutok.github.io/EnergyConversionTable/](https://ryutok.github.io/EnergyConversionTable/)
