@@ -1,0 +1,206 @@
+<html>
+    <head>
+        <title>Energy Conversion Table</title>
+        <style>
+            body {
+                font-family:Times New Roman, serif;
+                font-size:16px;
+            }
+            table {
+                display: table;
+                border-collapse: separate;
+            }
+            table tr th,
+            table tr td {
+                font-size: 16px;
+                padding: 3 5px;
+                border: 1px solid #000000;
+                vertical-align: middle;
+            }
+            table tr th {
+                text-align: center;
+                font-weight: bold;
+            }
+            table tr td {
+                text-align: center;
+            }
+        </style>
+        <script type="text/javascript">
+            var c = 299792458; // speed of light in vacuum in m/s (exact)
+            var h = 6.626070040 * Math.pow(10,-34); // Planck constant in Js
+            //var h = 6.62607015 * Math.pow(10,-34); // Planck constant in Js (New SI, exact)
+            var Na = 6.022140857 * Math.pow(10,23); // Avogadro constant in mol^(-1)
+            //var Na = 6.02214076 * Math.pow(10,23); // Avogadro constant in mol^(-1) (New SI, exact)
+            var e = 1.6021766208 * Math.pow(10,-19); // elementary charge in C
+            //var e = 1.602176634 * Math.pow(10,-19); // elementary charge in C (New SI, exact)
+            var mu0 = 4 * Math.PI * Math.pow(10,-7); // magnetic constant in N A^(-2) (exact)
+            var me = 9.10938356 * Math.pow(10,-31); // electron mass in kg
+            var e0 = 1 / (mu0 * c * c); // Electric constant in F/m
+            //var e0 = 8.854187817 * Math.pow(10,-12); // Electric constant in F/m (CODATA 2014)
+            var a0 = e0 * h * h / (Math.PI * me * e * e); // Bohr radius in m
+            //var a0 = 0.52917721067 * Math.pow(10,-10); // Bohr radius in m (CODATA 2014)
+            var Eh = e * e / (4 * Math.PI * e0 * a0); // Hartree energy in J
+            var eV_J = e; // eV in J
+            var cal_J = 4.184; // cal in J
+            var cm_J = h * c; // cm^(-1) in J
+            var J = Eh // Eh in Joule
+            var eV = J / eV_J; // Eh in eV
+            var cm = J * 0.01 / cm_J; // Eh in cm^(-1)
+            var kJ = J * Na * 0.001; // Eh in kJ/mol
+            var kcal = kJ / cal_J; // Eh in kcal/mol
+            var ary = [
+                    [0,      0,      0,       0,      0,        0,       0],
+                    [0,      1,      J,      eV,     cm,       kJ,    kcal],
+                    [0,    1/J,      1,    eV/J,   cm/J,     kJ/J,  kcal/J],
+                    [0,   1/eV,   J/eV,       1,  cm/eV,    kJ/eV, kcal/eV],
+                    [0,   1/cm,   J/cm,   eV/cm,      1,    kJ/cm, kcal/cm],
+                    [0,   1/kJ,   J/kJ,   eV/kJ,  cm/kJ,        1, kcal/kJ],
+                    [0, 1/kcal, J/kcal, eV/kcal, cm/kcal, kJ/kcal,       1]
+                ];
+            function GetNum(i,j){
+                var value = ary[i][j];
+                if (i == j) {
+                    return("1");
+                } else if (value >= 10000)  {
+                    answ = value.toExponential(5);
+                    return(answ.replace("e+", " &times; 10<sup>") + "\<\/sup\>");
+                } else if (value <= 0.1)  {
+                    answ = value.toExponential(5);
+                    return(answ.replace("e", " &times; 10<sup>") + "\<\/sup\>");
+                } else {
+                    answ = value.toPrecision(6);
+                    return(answ);
+                }
+            }
+            function GetC(){
+                answ = c.toString();
+                return(answ + " (exact)");
+            }
+            function GetH(){
+                answ = h.toExponential(9);
+                return(answ.replace("e", " &times; 10<sup>") + "\<\/sup\>");
+            }
+            function GetNa(){
+                answ = Na.toExponential(9);
+                return(answ.replace("e+", " &times; 10<sup>") + "\<\/sup\>");
+            }
+            function GetE(){
+                answ = e.toExponential(10);
+                return(answ.replace("e", " &times; 10<sup>") + "\<\/sup\>");
+            }
+            function GetE0(){
+                answ = e0.toExponential(9);
+                return(answ.replace("e", " &times; 10<sup>") + "\<\/sup\>");
+            }
+            function GetA0(){
+                answ = a0.toExponential(10);
+                return(answ.replace("e", " &times; 10<sup>") + "\<\/sup\>");
+            }
+            function GetEh(){
+                answ = Eh.toExponential(9);
+                return(answ.replace("e", " &times; 10<sup>") + "\<\/sup\>");
+            }
+            function GetCal(){
+                answ = cal_J.toString();
+                return(answ + " (exact)");
+            }
+        </script>
+    </head>
+    <body>
+        <h1>Energy Conversion Table</h1>
+        <table border="3" id="ect" style="width: 800px">
+            <tr>
+                <th><br clear="none"></th>
+                <th>hartree</th>
+                <th>J</th>
+                <th>eV</th>
+                <th>cm<sup>-1</sup></th>
+                <th>kJ/mol</th>
+                <th>kcal/mol</th>
+            </tr><tr>
+                <th>hartree</th><td>1</td><td></td><td></td><td></td><td></td><td></td>
+            </tr><tr>
+                <th>J</th><td></td><td>1</td><td></td><td></td><td></td><td></td>
+            </tr><tr>
+                <th>eV</th><td></td><td></td><td>1</td><td></td><td></td><td></td>
+            </tr><tr>
+                <th>cm<sup>-1</sup></th><td></td><td></td><td></td><td>1</td><td></td><td></td>
+            </tr><tr>
+                <th>kJ/mol</th><td></td><td></td><td></td><td></td><td>1</td><td></td>
+            </tr><tr>
+                <th>kcal/mol</th><td></td><td></td><td></td><td></td><td></td><td>1</td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            var t = document.getElementById('ect');
+            for (i = 1; i < 7; i++) {
+                for (j = 1; j < 7; j++) {
+                    t.rows[i].cells[j].innerHTML = GetNum(i,j);
+                }
+            }
+        </script>
+        <h2>Usage</h2>
+            <p>
+                When a unit X in the left column is converted to a unit Y in the top row,
+                the coefficient of the conversion is the table element, M<sub>X,Y</sub>.<br>
+                For example, 1 hartree = 27.2114 eV.
+            </p>
+        <h2>Constants</h2>
+        <table border="3" id="pcs" style="width: 500px">
+            <tr>
+                <th>Quantity</th>
+                <th>Symbol</th>
+                <th>Numerical value</th>
+                <th>Unit</th>
+            </tr><tr>
+                <td>speed of light in vacuum</td>
+                <td><i>c</i></td><td></td><td>m s<sup>-1</sup></td>
+            </tr><tr>
+                <td>Planck constant</td>
+                <td><i>h</i></td><td></td><td>J s</td>
+            </tr><tr>
+                <td>Avogadro constant</td>
+                <td><i>N</i><sub>A</sub></td><td></td><td>mol<sup>-1</sup></td>
+            </tr><tr>
+                <td>elementary charge</td>
+                <td><i>e</i></td><td></td><td>C</td>
+            </tr><tr>
+                <td>electric constant</td>
+                <td><i>&epsilon;</i><sub>0</sub></td><td></td><td>F m<sup>-1</sup></td>
+            </tr><tr>
+                <td>Bohr radius</td>
+                <td><i>a</i><sub>0</sub></td><td></td><td>m</td>
+            </tr><tr>
+                <td>Hartree energy</td>
+                <td><i>E</i><sub>h</sub></td><td></td><td>J</td>
+            </tr><tr>
+                <td>thermochemical calorie<sup>*2</sup></td>
+                <td>cal<sub>th</sub></td><td></td><td>J</td>
+            </tr>
+        </table>
+        <script type="text/javascript">
+            var t = document.getElementById('pcs');
+            t.rows[1].cells[2].innerHTML = GetC();
+            t.rows[2].cells[2].innerHTML = GetH();
+            t.rows[3].cells[2].innerHTML = GetNa();
+            t.rows[4].cells[2].innerHTML = GetE();
+            t.rows[5].cells[2].innerHTML = GetE0();
+            t.rows[6].cells[2].innerHTML = GetA0();
+            t.rows[7].cells[2].innerHTML = GetEh();
+            t.rows[8].cells[2].innerHTML = GetCal();
+        </script>
+        <h2>References</h2>
+        <ol><li>
+            P. J. Mohr, D. B. Newell, and B. N. Taylor,
+            CODATA Recommended Values of the Fundamental Physical Constants: 2014.
+            <i>Zenodo</i> [online], <b>2015</b>.
+            <a href="http://doi.org/10.5281/zenodo.22826">http://doi.org/10.5281/zenodo.22826</a> (accessed Mar 2, 2018).
+        </li><li>
+            A. Thompson and B. N. Taylor,
+            Appendix B.8: Factors for Units Listed Alphabetically.
+            In <i>Guide for the Use of the International System of Units (SI) NIST Special Publication 811</i> [online]; 2008 Edn. (ver. 3.2),
+            National Institute of Standards and Technology: Gaithersburg.
+            <a href="http://physics.nist.gov/SP811">http://physics.nist.gov/SP811</a> (accessed Mar 2, 2018).
+        </li></ol>
+    </body>
+</html>
